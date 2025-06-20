@@ -44,12 +44,8 @@ const Contact: React.FC = () => {
   };
 
   const getApiUrl = () => {
-    // Use a relative path for production (frontend and backend deployed together)
-    if (import.meta.env.MODE === 'production') {
-      return '/api/contact';
-    }
-    // Use localhost for development
-    return 'http://localhost:5000/api/contact';
+    const apiBase = import.meta.env.VITE_API_URL || '';
+    return `${apiBase}/api/contact`;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
