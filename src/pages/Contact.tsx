@@ -44,10 +44,11 @@ const Contact: React.FC = () => {
   };
 
   const getApiUrl = () => {
+    // Use a relative path for production (frontend and backend deployed together)
     if (import.meta.env.MODE === 'production') {
-      // Use your deployed backend URL here
-      return 'https://your-backend-domain.com/api/contact';
+      return '/api/contact';
     }
+    // Use localhost for development
     return 'http://localhost:5000/api/contact';
   };
 
