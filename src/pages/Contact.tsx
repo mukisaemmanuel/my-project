@@ -44,7 +44,7 @@ const Contact: React.FC = () => {
   };
 
   const getApiUrl = () => {
-    if (process.env.NODE_ENV === 'production') {
+    if (import.meta.env.MODE === 'production') {
       // Use your deployed backend URL here
       return 'https://your-backend-domain.com/api/contact';
     }
