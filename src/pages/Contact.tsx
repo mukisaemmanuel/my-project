@@ -43,6 +43,14 @@ const Contact: React.FC = () => {
     return !errors.name && !errors.email && !errors.phone && !errors.message;
   };
 
+  const getApiUrl = () => {
+    if (process.env.NODE_ENV === 'production') {
+      // Use your deployed backend URL here
+      return 'https://your-backend-domain.com/api/contact';
+    }
+    return 'http://localhost:5000/api/contact';
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
@@ -50,7 +58,7 @@ const Contact: React.FC = () => {
     setSubmitStatus('idle');
 
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
+      const response = await fetch(getApiUrl(), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
